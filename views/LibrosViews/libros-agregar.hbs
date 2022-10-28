@@ -1,0 +1,95 @@
+<main>
+  <div id="bruh">
+  <div class="card">
+
+    {{#if hasunodelotre}}
+
+    <h3 class="card-header"> {{#if editmode}}  Editar  {{else}} Agregar {{/if}} Libro</h3>
+    <div class="card-body">
+      <h4 class="card-title">Creacion de libro</h4>
+
+      <form enctype="multipart/form-data" method="POST" action="{{#if editmode}} /edit-book {{else}} /add-book {{/if}}" >
+        <div class="mb-3">
+          <label for="nombre_book" class="form-label">Nombre: </label>
+          <input type="text" class="form-control required" id="nombre_book"  required  name="nombrebook"  value="{{#if editmode}}{{libro.name}}{{else}}{{/if}}"/>
+        </div>
+
+        <div class="mb-3">
+          <label for="añales" class="form-label">Año de publicación del libro: </label>
+          <input type="text" class="form-control " id="añales" required name="nigga" value="{{#if editmode}}{{libro.publicacion}}{{else}}{{/if}}"  />
+        </div>
+       
+
+        <div class="mb-3">
+          <label for="Foto_book" class="form-label">Imagen: </label>
+          <input type="file" class="form-control required" id="Foto_book" required name="fotobook" value="{{#if editmode}}{{libro.imagen}}{{else}}{{/if}}" />
+          {{#if editmode}}
+              <img src="{{libro.imagen}}" class="card-img-top" alt="" />
+              {{/if}}
+        </div>
+
+         <div class="mb-3">
+          <label for="descript" class="form-label">Descripción del libro: </label>
+          <input type="text" class="form-control " id="descript" required name="descripcion" value="{{#if editmode}}{{libro.description}}{{else}}{{/if}}"  />
+        </div>
+
+         
+            <div class="mb-3">
+            <label for="categories" class="form-label">Categoria: </label>
+            <select class="form-select" id="categories" name="categoria" required>
+
+              <option {{#if editmode}}{{else}}selected{{/if}} value="">Seleccione una opcion</option>
+
+              {{#each categoria as |categ|}}
+              {{#if (comparation categ.id ../libro.categoriumId)}}
+                  <option selected value="{{categ.id}}">{{categ.name}}</option>      
+                   {{else}}       
+                   <option value="{{categ.id}}">{{categ.name}}</option> 
+                  {{/if}}  
+               {{/each}}
+            </select>
+          </div> 
+
+          <div class="mb-3">
+            <label for="autor" class="form-label">Autor: </label>
+            <select class="form-select" id="autor" name="autores" required>
+
+              <option {{#if editmode}}{{else}}selected{{/if}} value="">Seleccione una opcion</option>
+
+              {{#each autor as |aut|}}
+              {{#if (comparation aut.id ../libro.autorId)}}
+                  <option selected value="{{aut.id}}">{{aut.name}}</option>      
+                   {{else}}       
+                   <option value="{{aut.id}}">{{aut.name}}</option> 
+                  {{/if}}  
+               {{/each}}
+            </select>
+          </div> 
+
+              <div class="mb-3">
+            <label for="editorial" class="form-label">Editorial:</label>
+            <select class="form-select" id="editorial" name="editorial" required>
+              <option {{#if editmode}}{{else}}selected{{/if}}  value="">Seleccione una opcion</option>
+              {{#each editorial as |edito|}}
+              {{#if (comparation edito.id ../libro.editorialId)}}
+                  <option selected value="{{edito.id}}">{{edito.name}}</option>      
+                   {{else}}       
+                   <option value="{{edito.id}}">{{edito.name}}</option> 
+                  {{/if}}  
+               {{/each}}
+            </select>
+      
+         {{#if editmode}} <input type="hidden" name="book" value="{{libro.id}}">  {{/if}}
+
+      <button id="agregarDato" type="submit" class="btn btn-primary">{{#if editmode}} Editar {{else}} Crear {{/if}}  Libro</button>
+      <a href="mantenimiento-books" class="btn btn-warning">Atrás</a>
+    </form>
+    </div>
+
+    {{else}}
+     <h5 class="card-text warning">No se puede crear un libro porque no hay autores, categorias o editoriales</h5>
+  </div>
+  {{/if}}
+
+  </div>
+</main>

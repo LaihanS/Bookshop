@@ -1,0 +1,60 @@
+<main>
+
+  <section class="py-5 text-center container">
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light">Listado de libros</h1>
+        <p>
+          <a href="/create-book" class="btn btn-primary my-2">Introducir Nuevo Libro</a>
+        </p>
+      </div>
+    </div>
+  </section>
+  
+
+  <div class="album py-5 bg-light">
+    <div class="container" id="container1">
+
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+        {{#if haslibros}}
+
+        {{#each libro as |book|}}
+
+        <div class="col">
+          <div class="card" style="width: 18rem;">
+            <img src="{{book.imagen}}" class="card-img-top" alt="" />
+            <div class="card-body">
+              <h5 class="card-title">{{book.name}}</h5>
+             <h6 class="card-title">Categoria: {{book.categorium.dataValues.name}} </h6>
+              <h6 class="card-title">Editorial: {{book.editorial.dataValues.name}} </h6>
+              <h6 class="card-title">Autor: {{book.autor.dataValues.name}} </h6>
+                <h6 class="card-title">Año: {{book.publicacion}} </h6>
+              <p class="card-text">{{book.description}}</p>
+            </div>
+            <div class="card-body">
+              <form action="/delete-book" method="post">
+                <input type="hidden" name="deleteBook" value="{{book.id}}">
+                <button type="button" class="btn btn-danger" id="btnEliminarBook">Eliminar</button>
+              </form>
+              <a href="/edit-book/{{book.id}}?edit=true" class="btn btn-warning">Editar</a>
+            </div>
+          </div>
+        </div>
+
+        {{/each}}
+
+        {{else}}
+
+        <h1 class="card-title">
+          No hay libro míop D:
+        </h1>
+        
+        {{/if}}
+      </div>
+    </div>
+  </div>
+
+   
+</main>
+  

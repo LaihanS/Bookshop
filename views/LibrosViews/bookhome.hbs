@@ -1,0 +1,93 @@
+<main>
+
+  <section class="py-5 text-center container">
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light">Listado de libros</h1>
+        <p class="lead text-muted">"La lectura hace al hombre completo; la
+          conversación lo hace ágil, el escribir lo hace preciso".</p>
+        <p class="lead text-muted">-Francis Bacon</p>
+        <p>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="search" class="search-wrap py-5 text-center container">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light">Buscar Libros</h1>
+        <form action="/bookSearch" class="form-inline my-2 my-lg-0">
+          <i class="fas fa-search"></i>
+          <input
+            class="form-control mr-sm-2"
+            type="search"
+            placeholder="Buscar"
+            aria-label="Search"
+            ,
+            name="search"
+          />
+          <button
+            class="btn btn-outline-success my-2 my-sm-0"
+            type="submit"
+          >Buscar</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <div class="album py-5 bg-light">
+    <div class="container" id="container1">
+
+      <form action="/seleccionar-cate" method="get">
+        <select class="form-select" multiple aria-label="multiple select example" name="seleccion">
+        {{#each categoria as |cat|}}
+          <option value="{{cat.id}}"> {{cat.name}} </option>
+        {{/each}}
+     </select>
+     <button type="submit" class="btn btn-danger" id="filtro">Filtrar</button>
+        </form>
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+        {{#if haslibros}}
+
+          {{#each libro as |book|}}
+           <div class="col">
+           <div class="card" style="width: 18rem;">
+            <img src="{{book.imagen}}" class="card-img-top" alt="{{book.name}}" />
+              <a href="/get-book/{{book.id}}?dat=true">
+                <div class="card" style="width: 18rem;">
+                  <div class="card-body">
+                    <h5 class="card-title">{{book.name}}</h5>
+                    <h6 class="card-title">Categoria:
+                      {{book.categorium.dataValues.name}}
+                    </h6>
+                    <h6 class="card-title">Editorial:
+                      {{book.editorial.dataValues.name}}
+                    </h6>
+                    <h6 class="card-title">Autor:
+                      {{book.autor.dataValues.name}}
+                    </h6>
+                      <h6 class="card-title">Año: {{book.publicacion}} </h6>
+                    <p class="card-text">{{book.description}}</p>
+                  </div>
+                  <div class="card-body">
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+          {{/each}}
+
+        {{else}}
+
+          <h1 class="card-title">
+            No hay libro míop D:
+          </h1>
+
+        {{/if}}
+      </div>
+    </div>
+  </div>
+
+</main>

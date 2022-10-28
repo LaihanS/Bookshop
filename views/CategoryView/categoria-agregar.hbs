@@ -1,0 +1,29 @@
+<main>
+  <div >
+  <div class="card">
+
+  
+    <h3 class="card-header"> {{#if editmode}}  Editar  {{else}} Agregar {{/if}} Categoria</h3>
+    <div class="card-body">
+
+      <form method="POST" action="{{#if editmode}} /editar-category {{else}} /add-category {{/if}}" >
+        <div class="mb-3">
+          <label for="nombre_cate" class="form-label">Nombre: </label>
+          <input type="text" class="form-control required" id="nombre_cate"  required  name="nombrecategory"  value="{{#if editmode}}{{categoria.name}}{{else}}{{/if}}"/>
+        </div>
+
+         <div class="mb-3">
+          <label for="descript" class="form-label">Descripción: </label>
+          <input type="text" class="form-control " id="descript" required name="descripcion" value="{{#if editmode}}{{categoria.description}}{{else}}{{/if}}" />
+        </div>
+
+
+         {{#if editmode}} <input type="hidden" name="categoryID" value="{{categoria.id}}"> {{/if}}
+
+      <button id="agregarCat" type="submit" class="btn btn-primary">{{#if editmode}} Editar {{else}} Crear {{/if}}  Categoria</button>
+      <a href="/mantenimiento-categoria" class="btn btn-warning">Atrás</a>
+    </form>
+    </div>
+  </div>
+  </div>
+</main>

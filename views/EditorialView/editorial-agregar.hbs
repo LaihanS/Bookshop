@@ -1,0 +1,34 @@
+<main>
+  <div id="">
+  <div class="card">
+
+  
+    <h3 class="card-header"> {{#if editmode}}  Editar  {{else}} Agregar {{/if}} Editorial</h3>
+    <div class="card-body">
+
+      <form method="POST" action="{{#if editmode}} /editar-editorial {{else}} /add-editorial {{/if}}" >
+        <div class="mb-3">
+          <label for="nombre_cate" class="form-label">Nombre: </label>
+          <input type="text" class="form-control required" id="nombre_cate"  required  name="nombre"  value="{{#if editmode}}{{editorial.name}}{{else}}{{/if}}"/>
+        </div>
+
+         <div class="mb-3">
+          <label for="telefono" class="form-label">Teléfono: </label>
+          <input type="text" class="form-control " id="descript" required name="telefono" value="{{#if editmode}}{{editorial.telefono}}{{else}}{{/if}}"  />
+        </div>
+
+        <div class="mb-3">
+          <label for="pais" class="form-label">País: </label>
+          <input type="text" class="form-control " id="descript" required name="pais" value="{{#if editmode}}{{editorial.pais}}{{else}}{{/if}}"  />
+        </div>
+        
+            
+         {{#if editmode}} <input type="hidden" name="editorialid" value="{{editorial.id}}"> {{/if}}
+
+      <button id="agregarEd" type="submit" class="btn btn-primary">{{#if editmode}} Editar {{else}} Crear {{/if}}  Editorial</button>
+      <a href="/mantenimiento-editorial" class="btn btn-warning">Atrás</a>
+    </form>
+    </div>
+  </div>
+  </div>
+</main>

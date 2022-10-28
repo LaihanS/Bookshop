@@ -1,0 +1,57 @@
+<main>
+
+  <section class="py-5 text-center container">
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light">Listado de categorias</h1>
+        <p>
+          <a href="/create-categoria" class="btn btn-primary my-2">Introducir Nueva categoria</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="album py-5 bg-light">
+    <div class="container" id="container3">
+
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+        {{#if hascategoria}}
+
+        {{#each categoria as |cate|}}
+
+        <div class="col">
+          <div class="card" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title">{{cate.name}}</h5>
+              <h6 class="card-title">Libros Asociados: {{comparation4 cate.id cate.libros}}</h6>
+              <p class="card-text">{{cate.description}}</p>
+            </div>
+            <div class="card-body">
+              <form action="/delete-category" method="post">
+                <input type="hidden" name="deleteCategoria" value="{{cate.id}}">
+                <button type="button" class="btn btn-danger" id="btnEliminarcat">Eliminar</button>
+              </form>
+
+
+              <a href="/editar-category/{{cate.id}}?edit=true" class="btn btn-warning">Editar</a>
+            </div>
+          </div>
+        </div>
+
+        {{/each}}
+
+        {{else}}
+
+        <h1 class="card-title">
+          No hay categorias míop D:
+        </h1>
+        
+        {{/if}}
+      </div>
+    </div>
+  </div>
+
+   
+</main>
+  

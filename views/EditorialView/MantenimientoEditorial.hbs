@@ -1,0 +1,56 @@
+<main>
+
+  <section class="py-5 text-center container">
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light">Listado de Editoriales</h1>
+        <p>
+          <a href="/create-editorial" class="btn btn-primary my-2">Introducir Nueva Editorial</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="album py-5 bg-light">
+    <div class="container" id="container2">
+
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+        {{#if haseditorial}}
+
+        {{#each editorial as |edit|}}
+
+        <div class="col">
+          <div class="card" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title">{{edit.name}}</h5>
+              <h6 class="card-title">{{edit.telefono}}</h6>
+              <h6 class="card-title">Libros Asociados: {{comparation2 edit.id edit.libros}}</h6>
+              <p class="card-text">{{edit.pais}}</p>
+            </div>
+            <div class="card-body">
+              <form action="/delete-editorial" method="post">
+                <input type="hidden" name="deleteEditorial" value="{{edit.id}}">
+                <button type="button" class="btn btn-danger" id="btnEliminaredito">Eliminar</button>
+              </form>
+              <a href="/editar-editorial/{{edit.id}}?edit=true" class="btn btn-warning">Editar</a>
+            </div>
+          </div>
+        </div>
+
+        {{/each}}
+
+        {{else}}
+
+        <h1 class="card-title">
+          No hay editoriales míop D:
+        </h1>
+        
+        {{/if}}
+      </div>
+    </div>
+  </div>
+
+   
+</main>
+  

@@ -1,0 +1,29 @@
+<main>
+  <div>
+  <div class="card">
+
+  
+    <h3 class="card-header"> {{#if editmode}}  Editar  {{else}} Agregar {{/if}} Autor</h3>
+    <div class="card-body">
+
+      <form method="POST" action="{{#if editmode}} /editar-autor {{else}} /add-autor {{/if}}" >
+        <div class="mb-3">
+          <label for="nombre_autor" class="form-label">Nombre: </label>
+          <input type="text" class="form-control required" id="nombre_autor"  required  name="NombreAutor"  value="{{#if editmode}}{{autor.name}}{{else}}{{/if}}"/>
+        </div>
+
+         <div class="mb-3">
+          <label for="email" class="form-label">E-Mail: </label>
+          <input type="text" class="form-control " id="email" required name="mail" value="{{#if editmode}}{{autor.email}}{{else}}{{/if}}"  />
+        </div>
+
+
+         {{#if editmode}} <input type="hidden" name="autorID" value="{{autor.id}}"> {{/if}}
+
+      <button id="agregarAut" type="submit" class="btn btn-primary">{{#if editmode}} Editar {{else}} Crear {{/if}} Autor</button>
+      <a href="/mantenimiento-autor" class="btn btn-warning">Atrás</a>
+    </form>
+    </div>
+  </div>
+  </div>
+</main>

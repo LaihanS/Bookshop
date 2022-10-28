@@ -1,0 +1,57 @@
+<main>
+
+  <section class="py-5 text-center container">
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light">Listado de autores</h1>
+        <p>
+          <a href="/create-autor" class="btn btn-primary my-2">Introducir Nuevo Autor</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="album py-5 bg-light">
+    <div class="container" id="container4">
+
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+        {{#if hasautores}}
+
+        {{#each autores as |autor|}}
+
+        <div class="col">
+          <div class="card" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title">{{autor.name}}</h5>
+              <h6 class="card-title">Libros Asociados: {{comparation3 autor.id autor.libros}}</h6>
+              <p class="card-text">{{autor.email}}</p>
+            </div>
+            <div class="card-body">
+              <form action="/delete-autor" method="post">
+                <input type="hidden" name="deleteAutor" value="{{autor.id}}">
+                <button type="button" class="btn btn-danger" id="btnEliminarauto">Eliminar</button>
+              </form>
+
+
+              <a href="/editar-autor/{{autor.id}}?edit=true" class="btn btn-warning">Editar</a>
+            </div>
+          </div>
+        </div>
+
+        {{/each}}
+
+        {{else}}
+
+        <h1 class="card-title">
+          No hay autores míop D:
+        </h1>
+        
+        {{/if}}
+      </div>
+    </div>
+  </div>
+
+   
+</main>
+  

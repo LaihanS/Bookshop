@@ -1,0 +1,19 @@
+<main>
+    <div class="col">
+          <div class="card" style="width: 18rem;">
+            <img src="{{libro.imagen}}" class="card-img-top" alt="" />
+            <div class="card-body">
+              <h5 class="card-title">{{libro.name}}</h5>
+             <h6 class="card-title">Categoria: {{libro.categorium.dataValues.name}} </h6>
+              <h6 class="card-title">Editorial: {{libro.editorial.dataValues.name}} </h6>
+              <h6 class="card-title">Editorial Num: {{libro.editorial.dataValues.telefono}} </h6>
+              <h6 class="card-title">Editorial pais: {{libro.editorial.dataValues.pais}} </h6>
+              <h6 class="card-title">Autor: {{libro.autor.dataValues.name}} </h6>
+                <h6 class="card-title">Año: {{libro.publicacion}} </h6>
+              <p class="card-text">{{libro.description}}</p>
+            </div>
+            <div class="card-body">
+            </div>
+          </div>
+        </div>
+</main>
